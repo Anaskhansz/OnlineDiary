@@ -32,7 +32,10 @@ const Delete = () => {
             <h2 className="text-center">
               Are You sure wwnat to delete this taks
             </h2>
-            <button type="submit" style={{ backgroundColor: "red" }}>
+            <button
+              type="submit"
+              style={{ backgroundColor: "red", alignSelf: "center" }}
+            >
               Delete Task
             </button>
           </form>

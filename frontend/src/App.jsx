@@ -86,7 +86,7 @@ const App = () => {
         />
 
         <Route
-          path="/update/:id"
+          path="/update/:id/:tit/:desc"
           element={
             <PrivateRoute>
               <Update />

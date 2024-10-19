@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { handleSuccess, handleError } from "../../Utils";
 import { ToastContainer } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Update = () => {
-  let { id } = useParams();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  let navigate = useNavigate();
+  let { id, tit, desc } = useParams();
+  const [title, setTitle] = useState(tit);
+  const [description, setDescription] = useState(desc);
   const [image, setImage] = useState(null);
-  const [completed, setCompleted] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,9 +22,6 @@ const Update = () => {
     if (image) {
       formData.append("image", image);
     }
-    if (completed !== "") {
-      formData.append("completed", completed);
-    }
 
     fetch(`http://localhost:8000/updateTodo/${id}`, {
       method: "PATCH",
@@ -32,10 +29,15 @@ const Update = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         handleSuccess(data.message);
+        setTimeout(() => {
+          navigate("/read");
+        }, 1000);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        handleError(error.message);
+      });
   };
 
   return (
@@ -62,15 +64,7 @@ const Update = () => {
               name="image"
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <select
-              name="completed"
-              value={completed}
-              onChange={(e) => setCompleted(e.target.value)}
-            >
-              <option value="">Select Status</option>
-              <option value="true">True</option>
-              <option value="false">False</option>
-            </select>
+
             <button type="submit">Update Task</button>
           </form>
         </div>

@@ -25,7 +25,7 @@ const Read = () => {
       <div className="container">
         <div className="read">
           <h2 className="text-center" style={{ marginBottom: "3rem" }}>
-            Task List
+            Diary
           </h2>
           <div className="flex flex-column gap-4">
             {tasks?.length > 0 ? (
@@ -52,10 +52,11 @@ const Read = () => {
                   <div className="buttons flex  gap-2">
                     <Link
                       style={{ backgroundColor: "brown" }}
-                      to={`/update/${task._id}`}
+                      to={`/update/${task._id}/${task.title}/${task.description}`}
                     >
                       Update
                     </Link>
+
                     <Link
                       style={{ backgroundColor: "red" }}
                       to={`/delete/${task._id}`}

@@ -6,6 +6,20 @@
   text-decoration: none;
   list-style: none;
 }
+/* style scrollbar here  */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+*::-webkit-scrollbar-thumb {
+  background: #888;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 :root {
   --background-color: #181818; /* Dark background */
   --text-color: #e0e0e0; /* Light text */
@@ -212,10 +226,6 @@ input[type="file"]:hover {
   margin-bottom: 5rem;
 }
 
-.nav {
-  height: 8rem;
-  width: 100%;
-}
 .links {
   padding-top: 8rem;
   width: 100%;
